@@ -3,27 +3,16 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { notification, Spin } from 'antd';
 import { SocketContext } from '../context/SocketContext';
 import { AllContext } from '../context/AllContext';
-import { useHistory } from 'react-router-dom';
 
 
 export const QueryData = ({ setClient }) => {
  
-    const history = useHistory();
     const { allState } = useContext( AllContext );
-    const { invoices, ids } = allState;
+    const { ids } = allState;
     const { socket } = useContext(SocketContext);
     const ref = useRef();
     const [captchaValidate, setCaptchaValidate] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        if (invoices.length > 0) {
-            setIsVisible(true);
-        } else { 
-            setIsVisible(false);
-        }
-    }, [invoices])
 
     useEffect(() => {
         socket?.on('search-client', (data) => {
@@ -51,14 +40,6 @@ export const QueryData = ({ setClient }) => {
             setCaptchaValidate(true);
         }
     }
-
-    const onPayment = () => {
-        history.replace('/datos-factura');
-    }
-
-    const temp = /^[a-zA-Z\s]*$/;
-    console.log('validate:' , temp.test('h 1f'));
-    //TODO: validar campos de formulario de pago
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -91,13 +72,15 @@ export const QueryData = ({ setClient }) => {
             <div className="container-query-data-input">
                 <div
                     className="container-query-data-input-text"
-                >Ingrese número de Cédula/RUC</div
+                >Ingrese CI/RUC</div
                 >
                 <input
                     type="text"
                     name="identifier"
                     id="identifier"
                     placeholder="CI / RUC"
+                    className="container-data-payment-input-design
+                        container-customer-input-text"
                 />
             </div>
             <div className="container-query-data-recaptcha">
@@ -120,15 +103,6 @@ export const QueryData = ({ setClient }) => {
                         CONSULTAR
                     </button>
                 </Spin>
-                {
-                    (isVisible) && (
-                        <button
-                            onClick={onPayment}
-                        >
-                            IR AL PAGO
-                        </button>
-                    )
-                }
             </div>
         </form>
     )

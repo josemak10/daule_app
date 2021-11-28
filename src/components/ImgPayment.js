@@ -4,16 +4,13 @@ import file_questions_currents from '../assets/preguntas_frecuentes.pdf';
 
 export const ImgPayment = () => {
 
-    //TODO: Nueva ventana para consultar las transacciones
+    const onClick = () => {
+        const win = window.open("/historial-transacciones", "_blank");
+        win.focus();
+    }
 
     return (
         <div className="container-img-payment">
-            <img
-                src="https://static.placetopay.com/placetopay-logo-square.svg"
-                alt="Logo PlaceToPay"
-                width="75px"
-                height="65px"
-            />
             <a 
                 href={file_questions_currents}
                 target="_blank"
@@ -21,13 +18,15 @@ export const ImgPayment = () => {
                 className="container-img-payment-link"
             >
                 Preguntas frecuentes</a>
-            <a 
-                href={file_questions_currents}
-                target="_blank"
-                rel="no noreferrer"
+            <label
+                style={{
+                    cursor: 'pointer',
+                    color: '#1890FF'
+                }}
+                onClick={onClick}
                 className="container-img-payment-link"
             >
-                Historial transacciones</a>
+                Historial transacciones</label>
         </div>
     )
 }

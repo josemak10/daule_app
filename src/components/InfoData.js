@@ -5,19 +5,13 @@ import { SocketContext } from '../context/SocketContext';
 import img_cart_empty from '../assets/cart-outline.png';
 import img_cart from '../assets/cart.png';
 import { AllContext } from '../context/AllContext';
-import { useHistory } from 'react-router-dom';
 
 
 export const InfoData = () => {
 
-    const history = useHistory();
     const { online } = useContext( SocketContext );
     const { allState } = useContext( AllContext );
     const { invoices } = allState; 
-
-    const onClick = () => {
-        history.replace('/datos-factura');
-    }
 
     return (
         <div className="info-data">
@@ -31,7 +25,6 @@ export const InfoData = () => {
                 alt="cart"
                 width="25%"
                 height="25%"
-                onClick={onClick}
             />
         </div>
     )

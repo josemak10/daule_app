@@ -46,16 +46,17 @@
             });
             
             // $("#payment-form").ajaxForm({
-            //   url: 'https://sisgadmca.alausi.gob.ec:8085/paymentez/cgi-bin/pay.php',
-            //   // headers: {  
-            //   //   'Access-Control-Allow-Origin': '*' 
-            //   // },
+            //   url: 'https://siim.daule.gob.ec:9443/place2/cgi-bin/pay.php',
+            //   headers: {  
+            //     'Content-type': 'application/json',
+            //   },
             //   dataType: 'html',
-            //   // type: 'POST',
+            //   type: 'POST',
             //   mode:"no-cors",
-            //   success: function (data) {
-            //       var processUrl = data;
-            //       P.init(processUrl, { opacity: 0.3 });
+            //   success: function (response) {
+            //       alert(response);
+            //       // var processUrl = data;
+            //       // P.init(processUrl, { opacity: 0.3 });
             //       // $("#identifier").val(processUrl);
             //   },
             //   error: function (data) {
@@ -70,7 +71,7 @@
 
     <title>React App</title>
   </head>
-  <body>
+  <body style="overflow-x:hidden; overflow-y:hidden">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

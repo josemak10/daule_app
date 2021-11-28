@@ -6,8 +6,8 @@ import {
     Redirect,
   } from 'react-router-dom';
 import { InfoData } from '../components/InfoData';
+import { HistoryRename } from '../pages/HistoryRename';
 import { Invoice } from '../pages/Invoice';
-import { Payment } from '../pages/Payment';
 
 export const RouterPage = () => {
 
@@ -16,7 +16,7 @@ export const RouterPage = () => {
             <InfoData />
             <Switch>
                 <Route  path="/pagos-en-linea" component={Invoice} />
-                <Route  path="/datos-factura" component={Payment} />
+                <Route  path="/historial-transacciones" component={HistoryRename} />
                 <Redirect to="/pagos-en-linea" />
             </Switch>
         </Router>

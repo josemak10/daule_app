@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ContainerLogo } from '../components/ContainerLogo'
-import { DataPayment } from '../components/DataPayment';
 import { TableData } from '../components/TableData';
 import { AllContext } from '../context/AllContext'
 import { selectionGeneral } from '../types/selectionGeneral';
@@ -35,10 +33,7 @@ export const Payment = () => {
     }
 
     return (
-        <div className="container-principal">
-            <ContainerLogo />
-            <DataPayment client={client} />
-            
+        <div >  
             <TableData client={client} actionButton={removeInvoice} action={2} />
         </div>
     )

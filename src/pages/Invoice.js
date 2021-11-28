@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { ListData } from '../components/ListData';
-import { QueryData } from '../components/QueryData';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { ContainerLogo } from '../components/ContainerLogo';
+import { ContainerTotal } from '../components/ContainerTotal';
+import { ContainerCustomer } from '../components/ContainerCustomer';
+import { ContainerQueryData } from '../components/ContainerQueryData';
+import { ContainerInvoices } from '../components/ContainerInvoices';
+import { ImgPayment } from '../components/ImgPayment';
+import { AllContext } from '../context/AllContext';
 
 export const Invoice = () => {
 
+    const { allState } = useContext( AllContext );
+    const { invoices } = allState;
+    const [total, setTotal] = useState(0);
     const [client, setClient] = useState({
         name: '',
         data: [],
@@ -18,16 +25,27 @@ export const Invoice = () => {
         })
     }, [])
 
+    useEffect(() => {
+        let temp = 0;
+        if ( invoices ) {
+            invoices.forEach(invoice => temp += invoice.totalTarifa )
+        }
+        setTotal( temp );
+    }, [invoices])
+
     return (
         <div className="container-principal">
-            <ContainerLogo />
-            <QueryData
-                setClient={setClient}
-            />
-            <ListData
-                client={client}
-                setClient={setClient}
-            />
+            <ContainerLogo className="container-logo-title" />
+            <ImgPayment className="container-img-payment"/>
+            <div className="container-block">
+                <ContainerQueryData client={client} setClient={setClient} />
+                <ContainerInvoices />
+                <div className="container-block1">
+                    <ContainerTotal client={client} total={total} />
+                    <br />
+                    <ContainerCustomer total={total} invoices={invoices} />
+                </div>
+            </div>
         </div>
     )
 }

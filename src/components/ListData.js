@@ -6,7 +6,7 @@ import { types } from '../types/types';
 import { TableData } from './TableData';
 import { selectionGeneral } from '../types/selectionGeneral';
 
-export const ListData = ({ client, setClient }) => {
+export const ListData = ({ invoice, client, setClient }) => {
 
     const { dispatch } = useContext( AllContext );
 
@@ -19,10 +19,6 @@ export const ListData = ({ client, setClient }) => {
             dispatch({
                 type: types.addInvoice,
                 payload: data.temp_invoice,
-            })
-            setClient({
-                ...client,
-                data: client.data.filter(invoice => !data.temp_invoice_ids.includes(invoice.id)),
             })
             notification['success']({
                 message: 'Factura agregada',
@@ -37,6 +33,6 @@ export const ListData = ({ client, setClient }) => {
     }
 
     return (
-        <TableData client={client} actionButton={addPlus} />
+        <TableData invoice={invoice} actionButton={addPlus} />
     )
 }

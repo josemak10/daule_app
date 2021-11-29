@@ -1,10 +1,14 @@
 import React from 'react';
 
 
-export const ContainerTotal = ({ client, total }) => {
+export const ContainerTotal = ({ total, setIsDone, isDone }) => {
+
+    const onChange = () => {
+        setIsDone( !isDone );
+    }
 
     return (
-        <div className="container-style container-total" >
+        <div className="container-style container-total container-color-total" >
             <div className="container-total-block">
                 <div className="container-total-block1">
                     <label className="container-total-data-text-total"
@@ -33,6 +37,8 @@ export const ContainerTotal = ({ client, total }) => {
                     id="done"
                     name="done"
                     type="checkbox"
+                    value={isDone}
+                    onChange={ onChange }
                 />
             </div>
         </div>

@@ -13,6 +13,7 @@ export const Invoice = () => {
     const { allState } = useContext( AllContext );
     const { invoices } = allState;
     const [total, setTotal] = useState(0);
+    const [isDone, setIsDone] = useState(false);
     const [client, setClient] = useState({
         name: '',
         data: [],
@@ -41,9 +42,9 @@ export const Invoice = () => {
                 <ContainerQueryData client={client} setClient={setClient} />
                 <ContainerInvoices />
                 <div className="container-block1">
-                    <ContainerTotal client={client} total={total} />
+                    <ContainerTotal total={total} setIsDone={setIsDone} isDone={isDone} />
                     <br />
-                    <ContainerCustomer total={total} invoices={invoices} />
+                    <ContainerCustomer total={total} invoices={invoices} isDone={isDone} />
                 </div>
             </div>
         </div>

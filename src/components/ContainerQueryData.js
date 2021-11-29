@@ -5,13 +5,13 @@ import { ListData } from './ListData';
 
 export const ContainerQueryData = ({ client, setClient }) => {
     return (
-        <div  className="container-style container-query" >
+        <div  className="container-style container-query container-color-query-data" >
             <QueryData setClient={setClient} />
             <List
                 className="container-query-data-list"
                 dataSource={ client.data }
                 renderItem={ invoice => (
-                    <List.Item>
+                    <List.Item >
                         <ListData
                             invoice={invoice}
                             client={client}

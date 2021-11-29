@@ -34,7 +34,8 @@ export const ContainerInvoices = () => {
     }
 
     return (
-        <div className="container-style container-query" >
+        <div className="container-style container-query container-color-invoices" >
+            <label className="container-invoice-data-title">Facturas a pagar</label>
             <List
                 className="container-invoice-data-list"
                 dataSource={ client.data }

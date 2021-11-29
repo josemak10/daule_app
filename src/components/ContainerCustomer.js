@@ -6,8 +6,11 @@ import { getDataToPay } from '../helpers/datatoPay';
 import { SocketContext } from '../context/SocketContext';
 import { validateEmail } from '../helpers/validateEmail';
 
+import img_currency_usd from '../assets/currency-usd.png';
+import img_transfer_right from '../assets/transfer-right.png';
 
-export const ContainerCustomer = ({ total, invoices }) => {
+
+export const ContainerCustomer = ({ total, invoices, isDone }) => {
 
     const { ip } = useContext( SocketContext );
     const [isOpen, setIsOpen] = useState(false);
@@ -109,17 +112,55 @@ export const ContainerCustomer = ({ total, invoices }) => {
 
     return (
         <form
-            className="container-style container-customer"
-            onSubmit={onSubmit}
+            className="container-style container-customer container-color-data-payment"
+            // onSubmit={onSubmit}
         >
             <div>
-                <button type="submit"> Pago </button>
-                <UsergroupAddOutlined
-                    type="button"
+                {
+                    (invoices.length > 0 && data.cedula!=='' && isDone) && (
+                        <>
+                            <label
+                                style={{
+                                    fontSize: 17,
+                                    fontWeight: 600,
+                                }}
+                            >Pagar</label>
+                            <img
+                                src={img_currency_usd}
+                                alt="img_payment"
+                                width="30px"
+                                height="30px"
+                                type="button"
+                                onClick={ onSubmit }
+                            />
+                        </>
+                    )
+                }
+                {/* <button type="submit"> Pago </button> */}
+                <label
+                    style={{
+                        fontSize: 17,
+                        fontWeight: 600,
+                        marginLeft: '70px'
+                    }}
+                >Pulsar</label>
+                <img
+                    src={img_transfer_right}
+                    alt="transfer"
+                    width="30px"
+                    height="30px"
                     style={{
                         fontSize: 25, 
                         color:'navy',
-                        marginLeft: '200px'
+                        marginLeft: '10px'
+                    }}
+                />
+                <UsergroupAddOutlined
+                    type="button"
+                    style={{
+                        fontSize: 28, 
+                        color:'navy',
+                        marginLeft: '10px'
                     }}
                     onClick={ onClick }
                 />
@@ -145,7 +186,7 @@ export const ContainerCustomer = ({ total, invoices }) => {
             <input
                 id="cedula"
                 name="cedula"
-                placeholder="1234567890"
+                placeholder="0000000000"
                 type="number"
                 disabled
                 value={ data.cedula }

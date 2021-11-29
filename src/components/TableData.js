@@ -1,8 +1,10 @@
+import { Tag } from 'antd';
 import React, { useContext } from 'react';
 
 import img_cart_plus from '../assets/cart-plus.png';
 import img_cart_remove from '../assets/cart-remove.png';
 import { AllContext } from '../context/AllContext';
+import { getColorByModule } from '../helpers/colorByModule';
 
 
 export const TableData = ({ invoice, actionButton, action = 1 }) => {
@@ -17,13 +19,22 @@ export const TableData = ({ invoice, actionButton, action = 1 }) => {
             <div
                 className="container-list-data-block1"
             >
-                <div>
-                    <label>{invoice.modulo}</label>
-                    <label>{invoice.apellido + ' ' + invoice.nombre + ' - ' + invoice.cedula} </label>
+                <div className="container-table-data-firt-row">
+                    <Tag
+                        color={ getColorByModule(invoice.idModulo) }
+                        className="table-data-text"
+                    >{invoice.modulo}</Tag>
+                    <label
+                        className="table-data-text"
+                    > Referencia:  {invoice.referencia} </label>
                 </div>
 
-                <label>Referencia: {invoice.referencia}</label>
-                <label>Detalle {invoice.concepto}</label>
+                <label
+                    className="table-data-text table-data-text-oblique"
+                > {invoice.apellido + ' ' + invoice.nombre + ' - ' + invoice.cedula} </label>
+                <label
+                    className="table-data-text-detalle"
+                >{invoice.concepto}</label>
             </div>
                         
             <div

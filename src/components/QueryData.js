@@ -1,26 +1,24 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
-import { notification, Spin } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
+import { message, Spin } from 'antd';
 import { SocketContext } from '../context/SocketContext';
 import { AllContext } from '../context/AllContext';
+import { useHistory } from 'react-router-dom';
 
 
 export const QueryData = ({ setClient }) => {
  
+    const history = useHistory();
     const { allState } = useContext( AllContext );
     const { ids } = allState;
     const { socket } = useContext(SocketContext);
-    const ref = useRef();
-    const [captchaValidate, setCaptchaValidate] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
         socket?.on('search-client', (data) => {
+            let temp = 0;
             if (!data || data.length <= 0) {
-                notification['info']({
-                    message: 'Consulta de deuda',
-                    description: 'No contiene deuda'
-                })
+                message.info("No contiene deuda", 2);
                 setClient({
                     name: '',
                     data: [],
@@ -28,40 +26,32 @@ export const QueryData = ({ setClient }) => {
             } else {
                 setClient({
                     name: data[0].apellido + ' ' + data[0].nombre,
-                    data: data.filter(row => !ids.includes(row.id)),
+                    data: data,
                 })
+                data.forEach(invoice => temp += invoice.totalTarifa );
             }
+            setTotal(temp.toFixed(2));
             setIsLoading(false);
         })
-    }, [socket , setClient, ids])
+    }, [socket , setClient, ids, setTotal])
 
-    const onChange = () => {
-        if ( ref.current.getValue() ) {
-            setCaptchaValidate(true);
-        }
+    const onContinue = () => {
+        history.replace('facturas-a-pagar');
     }
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if ( ref.current.getValue() ) {
-            setCaptchaValidate(true);
-            if (!e.nativeEvent.target.identifier.value){
-                notification['error']({
-                    message: 'Error',
-                    description: 'Es necesario ingresar una Cédula-RUC'
-                })
-                return;
-            }
-            socket?.emit('search-client', {
-                identifier: e.nativeEvent.target.identifier.value
-            })
-
-            setIsLoading(true);
-            
-        } else {
-            setCaptchaValidate(false);
+        if (!e.nativeEvent.target.identifier.value){
+            message.error("Es necesario ingresar una Cédula-RUC", 2);
+            return;
         }
+        socket?.emit('search-client', {
+            identifier: e.nativeEvent.target.identifier.value
+        })
+
+        setIsLoading(true);
+            
     }
 
     return (
@@ -70,10 +60,6 @@ export const QueryData = ({ setClient }) => {
             onSubmit={onSubmit}
         >
             <div className="container-query-data-input">
-                <div
-                    className="container-query-data-input-text"
-                >Ingrese CI/RUC</div
-                >
                 <input
                     type="text"
                     name="identifier"
@@ -82,20 +68,6 @@ export const QueryData = ({ setClient }) => {
                     className="container-data-payment-input-design
                         container-customer-input-text"
                 />
-            </div>
-            <div className="container-query-data-recaptcha">
-                <div>
-                    <ReCAPTCHA
-                        ref={ref}
-                        sitekey={process.env.REACT_APP_KEY_CAPTCHA}
-                        onChange={onChange}
-                    />
-                    { captchaValidate===false && (
-                        <div
-                            className="text-captcha-required"
-                        >Por favor acepta el captcha</div>
-                    )}
-                </div>
                 <Spin spinning={isLoading}>
                     <button
                         type="submit"
@@ -103,6 +75,15 @@ export const QueryData = ({ setClient }) => {
                         CONSULTAR
                     </button>
                 </Spin>
+            </div>
+            <div className="container-query-data-input">
+                <label>Total a pagar: {total} </label>
+                <button
+                    onClick={onContinue}
+                    disabled={ids.length===0} 
+                >
+                    Continuar
+                </button>
             </div>
         </form>
     )

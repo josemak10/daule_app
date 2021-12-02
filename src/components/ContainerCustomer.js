@@ -49,30 +49,10 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
         xhr.onreadystatechange = function () {
             if ( xhr.readyState===4) {
                 const url = xhr.responseText;
-                window.open(url, '_blank', 'noopener,noreferrer');
+                window.open(url, "_self", 'noopener,noreferrer');
             }
         }
         xhr.send( JSON.stringify(body) );
-
-        // fetch(
-        //     'https://siim.daule.gob.ec:9443/place2/cgi-bin/pay.php',
-        //     {
-        //         headers: {
-        //             'Content-type': 'application/json',
-        //         },
-        //         mode:"no-cors",
-        //         body: JSON.stringify(body),
-        //         method: 'POST',
-        //     }
-        // )
-        // .then(async data => {
-        //     console.log('dasds', data);
-        //     const url = data;
-        //     window.open(url, '_blank', 'noopener,noreferrer');
-
-            // const s = document.createElement('script');
-            // s.innerHTML = `P.init(${url})`;
-        // })
     }
 
     const onClick = (e) => {
@@ -113,7 +93,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
     return (
         <form
             className="container-style container-customer container-color-data-payment"
-            // onSubmit={onSubmit}
         >
             <div>
                 {
@@ -136,7 +115,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                         </>
                     )
                 }
-                {/* <button type="submit"> Pago </button> */}
                 <label
                     style={{
                         fontSize: 17,

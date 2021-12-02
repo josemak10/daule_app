@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { notification } from 'antd';
+import { message } from 'antd';
 
 import { AllContext } from '../context/AllContext';
 import { types } from '../types/types';
@@ -20,15 +20,9 @@ export const ListData = ({ invoice, client, setClient }) => {
                 type: types.addInvoice,
                 payload: data.temp_invoice,
             })
-            notification['success']({
-                message: 'Factura agregada',
-                description: 'La factura fue agregada a la cesta de compras',
-            })
         } else {
-            notification['warn']({
-                message: 'Factura NO agregada',
-                description: 'No se ha podido agregar facturas por un posible tema de coactivas',
-            })
+            message.warning(
+                "No se ha podido agregar facturas por un posible tema de coactivas", 2);
         }
     }
 

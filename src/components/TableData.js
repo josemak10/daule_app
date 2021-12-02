@@ -52,6 +52,9 @@ export const TableData = ({ invoice, actionButton, action = 1 }) => {
                             alt="cart plus"
                             width="30px"
                             height="30px"
+                            style={{
+                                cursor: 'pointer',
+                            }}
                             onClick={e => actionButton(e, invoice)}
                         />
                     )

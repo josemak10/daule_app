@@ -1,0 +1,14 @@
+.container-home {
+  background-color: black;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.text-title-home {
+  color: #f6b61b;
+  background-color: aqua;
+  width: 100%;
+}

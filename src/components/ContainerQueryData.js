@@ -20,7 +20,7 @@ export const ContainerQueryData = () => {
     }, [])
 
     return (
-        <div  className="container-style container-query container-color-query-data" >
+        <div  className="container-style" >
             {
                 ( isCaptcha ) 
                     ? (

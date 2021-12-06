@@ -17,8 +17,8 @@ export const Home = ({ setIsCaptcha }) => {
     }
 
     return (
-        <div>
-            <label className="container-query-data">
+        <div className="container-home">
+            <label className="text-title-home">
                 Bienvenido a Pagos en Línea
             </label>
             <div className="container-query-data-recaptcha">
@@ -37,6 +37,7 @@ export const Home = ({ setIsCaptcha }) => {
                 </div>
             </div>
             <button
+                className="container-query-data"
                 disabled={ !captchaValidate }
                 onClick={ onClick }
             > 

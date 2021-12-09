@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { ContainerLogo } from '../components/ContainerLogo';
 import { ContainerTotal } from '../components/ContainerTotal';
 import { ContainerCustomer } from '../components/ContainerCustomer';
-import { ContainerQueryData } from '../components/ContainerQueryData';
-import { ContainerInvoices } from '../components/ContainerInvoices';
-import { ImgPayment } from '../components/ImgPayment';
 import { AllContext } from '../context/AllContext';
 import { useHistory } from 'react-router-dom';
+
+import img_return from '../assets/chevron-left-black.png';
 
 export const Invoice = () => {
 
@@ -16,17 +14,6 @@ export const Invoice = () => {
     const { invoices } = allState;
     const [total, setTotal] = useState(0);
     const [isDone, setIsDone] = useState(false);
-    const [client, setClient] = useState({
-        name: '',
-        data: [],
-    })
-
-    useEffect(() => {
-        setClient({
-            name: '',
-            data: [],
-        })
-    }, [])
 
     useEffect(() => {
         let temp = 0;
@@ -40,36 +27,44 @@ export const Invoice = () => {
         history.replace('/facturas-a-pagar');
     }
 
-    const toNext = () => {
+    // const toNext = () => {
         // history.replace('datos-pago');
-    }
+    // }
 
     return (
-        <div className="container-principal">
-            {/* <ContainerQueryData  /> */}
-            {/* <ContainerLogo className="container-logo-title" />
-            <ImgPayment className="container-img-payment"/>
-            <div className="container-block">
-                <ContainerQueryData client={client} setClient={setClient} />
-                <ContainerInvoices /> */}
+        <div className="container-style">
             <div className="container-query-data-input">
                 <button
-                    // className="container-invoice-data-title"
                     onClick={toReturn}
-                >Regresar</button>
-                <label>Total a pagar: {total} </label>
-                <button
-                    // className="container-invoice-data-title"
-                    onClick={toNext}
-                    disabled={invoices.length===0}
-                >Pagar</button>
+                >
+                    <img
+                        src={img_return}
+                        alt="next"
+                        width="22px"
+                        height="22px"
+                    />
+                    Regresar
+                </button>
+                <label
+                    className="container-total-data-text-total"
+                >
+                    Total a pagar: {total.toFixed(2)}
+                </label>
+                <label
+                    // onClick={toNext}
+                    // disabled={invoices.length===0}
+                >
+                    GADM Daule
+                    {/* <img
+                        src={img_next}
+                        alt="next"
+                        width="22px"
+                        height="22px"
+                    /> */}
+                </label>
             </div>
-            <div className="container-style container-query">
-                <ContainerTotal total={total} setIsDone={setIsDone} isDone={isDone} />
-                <br />
-                <ContainerCustomer total={total} invoices={invoices} isDone={isDone} />
-            </div>
-            {/* </div>  */}
+            <ContainerCustomer total={total} invoices={invoices} isDone={isDone} />
+            <ContainerTotal total={total} setIsDone={setIsDone} isDone={isDone} />
         </div>
     )
 }

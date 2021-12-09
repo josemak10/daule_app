@@ -9,8 +9,8 @@ export const ContainerLogo = () => {
             <img
                 src={img_logo}
                 alt="GADM Daule"
-                width="100px"
-                height="50px"
+                width="21%"
+                height="100%"
             />
             <div
                 className="container-title-text"

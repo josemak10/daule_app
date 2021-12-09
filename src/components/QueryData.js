@@ -4,6 +4,9 @@ import { SocketContext } from '../context/SocketContext';
 import { AllContext } from '../context/AllContext';
 import { useHistory } from 'react-router-dom';
 
+import img_next from '../assets/chevron-right-black.png';
+import img_search from '../assets/magnify-black.png';
+
 
 export const QueryData = ({ setClient }) => {
  
@@ -72,17 +75,33 @@ export const QueryData = ({ setClient }) => {
                     <button
                         type="submit"
                     >
-                        CONSULTAR
+                        Consultar
+                        <img
+                        src={img_search}
+                        alt="next"
+                        width="20px"
+                        height="20px"
+                    />
                     </button>
                 </Spin>
             </div>
             <div className="container-query-data-input">
-                <label>Total a pagar: {total} </label>
+                <label 
+                    className="container-total-data-text-total"
+                >
+                    Total a pagar: $ {total} 
+                </label>
                 <button
                     onClick={onContinue}
                     disabled={ids.length===0} 
                 >
                     Continuar
+                    <img
+                        src={img_next}
+                        alt="next"
+                        width="22px"
+                        height="22px"
+                    />
                 </button>
             </div>
         </form>

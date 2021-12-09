@@ -20,6 +20,9 @@ export const ListData = ({ invoice, client, setClient }) => {
                 type: types.addInvoice,
                 payload: data.temp_invoice,
             })
+            message.success(
+                "Factura añadida", 2);
+        
         } else {
             message.warning(
                 "No se ha podido agregar facturas por un posible tema de coactivas", 2);

@@ -1,5 +1,8 @@
 import React, { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { ContainerLogo } from './ContainerLogo';
+
+import img_next from '../assets/chevron-right-black.png';
 
 export const Home = ({ setIsCaptcha }) => {
 
@@ -18,16 +21,13 @@ export const Home = ({ setIsCaptcha }) => {
 
     return (
         <div className="container-home">
-            <label className="text-title-home">
-                Bienvenido a Pagos en Línea
-            </label>
-            <div className="container-query-data-recaptcha">
+            <ContainerLogo />
+            <div>
                 <div>
                     <ReCAPTCHA
                         ref={ref}
                         sitekey={process.env.REACT_APP_KEY_CAPTCHA}
                         onChange={onChange}
-                        // size="compact"
                     />
                     { captchaValidate===false && (
                         <div
@@ -37,11 +37,16 @@ export const Home = ({ setIsCaptcha }) => {
                 </div>
             </div>
             <button
-                className="container-query-data"
                 disabled={ !captchaValidate }
                 onClick={ onClick }
             > 
-                Continuar 
+                Continuar
+                <img
+                    src={img_next}
+                    alt="next"
+                    width="22px"
+                    height="22px"
+                />
             </button>
         </div>
     )

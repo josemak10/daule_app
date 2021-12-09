@@ -6,6 +6,9 @@ import { types } from '../types/types';
 import { TableData } from './TableData';
 import { useHistory } from 'react-router-dom';
 
+import img_next from '../assets/chevron-right-black.png';
+import img_return from '../assets/chevron-left-black.png';
+
 export const ContainerInvoices = () => {
 
     const history = useHistory();
@@ -48,18 +51,35 @@ export const ContainerInvoices = () => {
     }
 
     return (
-        <div className="container-style container-query container-color-invoices" >
+        <div className="container-style" >
             <div className="container-query-data-input">
                 <button
-                    // className="container-invoice-data-title"
                     onClick={toReturn}
-                >Regresar</button>
-                <label>Total a pagar: {total} </label>
+                >
+                    <img
+                        src={img_return}
+                        alt="next"
+                        width="22px"
+                        height="22px"
+                    />
+                    Regresar
+                </button>
+                <label
+                    className="container-total-data-text-total"
+                >Total a pagar: $ {total} </label>
                 <button
                     // className="container-invoice-data-title"
                     onClick={toNext}
                     disabled={invoices.length===0}
-                >Continuar</button>
+                >
+                    Continuar
+                    <img
+                        src={img_next}
+                        alt="next"
+                        width="22px"
+                        height="22px"
+                    />
+                </button>
             </div>
             <List
                 className="container-invoice-data-list"

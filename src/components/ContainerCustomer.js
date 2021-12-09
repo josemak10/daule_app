@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react';
-import { UsergroupAddOutlined } from '@ant-design/icons';
-import { message, Modal } from 'antd';
+import { message, Modal, Spin } from 'antd';
 import { DataPayment } from './DataPayment';
 import { getDataToPay } from '../helpers/datatoPay';
 import { SocketContext } from '../context/SocketContext';
 import { validateEmail } from '../helpers/validateEmail';
 
-import img_currency_usd from '../assets/currency-usd.png';
-import img_transfer_right from '../assets/transfer-right.png';
+import img_customer from '../assets/shield-account-black.png';
+import img_payment from '../assets/currency-usd-black.png';
 
 
 export const ContainerCustomer = ({ total, invoices, isDone }) => {
 
     const { ip } = useContext( SocketContext );
+    const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [data, setData] = useState({
         tipo_doc: '',
@@ -51,8 +51,10 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                 const url = xhr.responseText;
                 window.open(url, "_self", 'noopener,noreferrer');
             }
+            setIsLoading(false);
         }
         xhr.send( JSON.stringify(body) );
+        setIsLoading(true);
     }
 
     const onClick = (e) => {
@@ -92,57 +94,8 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
 
     return (
         <form
-            className="container-style container-customer container-color-data-payment"
+            className=" container-customer"
         >
-            <div>
-                {
-                    (invoices.length > 0 && data.cedula!=='' && isDone) && (
-                        <>
-                            <label
-                                style={{
-                                    fontSize: 17,
-                                    fontWeight: 600,
-                                }}
-                            >Pagar</label>
-                            <img
-                                src={img_currency_usd}
-                                alt="img_payment"
-                                width="30px"
-                                height="30px"
-                                type="button"
-                                onClick={ onSubmit }
-                            />
-                        </>
-                    )
-                }
-                <label
-                    style={{
-                        fontSize: 17,
-                        fontWeight: 600,
-                        marginLeft: '70px'
-                    }}
-                >Pulsar</label>
-                <img
-                    src={img_transfer_right}
-                    alt="transfer"
-                    width="30px"
-                    height="30px"
-                    style={{
-                        fontSize: 25, 
-                        color:'navy',
-                        marginLeft: '10px'
-                    }}
-                />
-                <UsergroupAddOutlined
-                    type="button"
-                    style={{
-                        fontSize: 28, 
-                        color:'navy',
-                        marginLeft: '10px'
-                    }}
-                    onClick={ onClick }
-                />
-            </div>
             <label
                 className="container-customer-data-text"
             >
@@ -246,6 +199,41 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                     container-customer-input-text
                     container-customer-input-text-size"
             />
+            <br />
+            <button
+                onClick={onClick}
+            >
+                Registrar datos para el pago
+                <img
+                    src={img_customer}
+                    alt="next"
+                    width="22px"
+                    height="22px"
+                />
+            </button>
+            <div>
+                {
+                    (invoices.length > 0 && data.cedula!=='' && isDone) && (
+                        <>
+                            <Spin spinning={isLoading}>
+                                <button
+                                    onClick={ onSubmit }
+                                    disabled={invoices.length===0}
+                                >
+                                    Pagar
+                                    <img
+                                        src={img_payment}
+                                        alt="payment"
+                                        width="22px"
+                                        height="22px"
+                                    />
+                                </button>   
+                            </Spin>
+
+                        </>
+                    )
+                }
+            </div>
             <Modal
                 title="Ingrese datos para el pago"
                 visible={isOpen}

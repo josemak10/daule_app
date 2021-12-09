@@ -4,6 +4,7 @@ import { QueryData } from './QueryData';
 import { ListData } from './ListData';
 import { Home } from './Home';
 import { AllContext } from '../context/AllContext';
+import { ImgPayment } from './ImgPayment';
 
 export const ContainerQueryData = () => {
 
@@ -35,6 +36,7 @@ export const ContainerQueryData = () => {
                     ? (
                         <>
                             <QueryData setClient={setClient} />
+                            <ImgPayment />
                             <List
                                 className="container-query-data-list"
                                 dataSource={ client.data }

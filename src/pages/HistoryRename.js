@@ -1,6 +1,8 @@
 import React from 'react'
-import { ContainerLogo } from '../components/ContainerLogo'
 import { HistoryData } from '../components/HistoryData';
+
+import img_search from '../assets/magnify-black.png';
+
 
 export const HistoryRename = () => {
 
@@ -23,16 +25,11 @@ export const HistoryRename = () => {
     }
 
     return (
-        <div className="container-principal">
-            <ContainerLogo className="container-logo-title" />
+        <div className="container-style">
             <form
-                className="container-style container-history"
+                className="container-history"
                 onSubmit={ onSubmit }
             >
-                <label
-                    className="container-customer-data-text"
-                >
-                    # de Transacción</label>
                 <input
                     id="referencia"
                     name="referencia"
@@ -42,7 +39,15 @@ export const HistoryRename = () => {
                         container-customer-input-text
                         container-customer-input-text-size"
                 />
-                <button type="submit"> Consultar </button>
+                <button type="submit">
+                    Consultar
+                    <img
+                        src={img_search}
+                        alt="next"
+                        width="20px"
+                        height="20px"
+                    />
+                </button>
             </form>
             <HistoryData />
         </div>

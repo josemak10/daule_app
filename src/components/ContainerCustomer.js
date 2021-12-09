@@ -52,6 +52,7 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                 window.open(url, "_self", 'noopener,noreferrer');
             }
             setIsLoading(false);
+            message.loading('Espere unos segundos mientras se carga la pagina', 2);
         }
         xhr.send( JSON.stringify(body) );
         setIsLoading(true);
@@ -94,7 +95,7 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
 
     return (
         <form
-            className=" container-customer"
+            className="container-customer"
         >
             <label
                 className="container-customer-data-text"
@@ -179,7 +180,7 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                 type="email"
                 value={ data.email }
                 disabled
-                className="container-customer-input-text
+                className="container-customer-input-text-email
                     container-data-payment-input-design
                     container-customer-input-text-size"
             />

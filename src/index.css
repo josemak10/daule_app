@@ -354,7 +354,16 @@
 }
 
 .container-customer-data-label-input {
-  text-transform: uppercase;
+  text-transform: capitalize;
+  font-size: 13px;
+  font-weight: 600;
+  color: #56403b;
+  width: 60%;
+  height: 25px;
+}
+
+.container-customer-data-label-input-email {
+  text-transform: lowercase;
   font-size: 13px;
   font-weight: 600;
   color: #56403b;
@@ -382,7 +391,13 @@
 }
 
 .container-customer-input-text {
-  text-transform: uppercase;
+  text-transform: capitalize;
+  font-weight: 600;
+  color: rgb(1, 90, 164);
+}
+
+.container-customer-input-text-email {
+  text-transform: lowercase;
   font-weight: 600;
   color: rgb(1, 90, 164);
 }
@@ -429,9 +444,8 @@
 }
 
 .container-img-payment-link {
-  font-size: 17px;
-  font-weight: 600;
-  padding-top: 0px;
+  font-size: 15px;
+  font-weight: 550;
 }
 
 .container-data-payment-total {

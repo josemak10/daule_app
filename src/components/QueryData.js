@@ -77,11 +77,11 @@ export const QueryData = ({ setClient }) => {
                     >
                         Consultar
                         <img
-                        src={img_search}
-                        alt="next"
-                        width="20px"
-                        height="20px"
-                    />
+                            src={img_search}
+                            alt="next"
+                            width="20px"
+                            height="20px"
+                        />
                     </button>
                 </Spin>
             </div>

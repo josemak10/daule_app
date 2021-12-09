@@ -112,7 +112,7 @@ export const DataPayment = ({ data, setData }) => {
                     type="email"
                     required
                     onChange={ onChange }
-                    className="container-customer-data-label-input
+                    className="container-customer-data-label-input-email
                         container-data-payment-input-design"
                 />
                 

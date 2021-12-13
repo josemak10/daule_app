@@ -18,7 +18,7 @@ export const QueryData = ({ setClient }) => {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        socket?.on('search-client', (data) => {
+        socket.on('search-client', data => {
             let temp = 0;
             if (!data || data.length <= 0) {
                 message.info("No contiene deuda", 2);
@@ -49,7 +49,7 @@ export const QueryData = ({ setClient }) => {
             message.error("Es necesario ingresar una Cédula-RUC", 2);
             return;
         }
-        socket?.emit('search-client', {
+        socket && socket.emit('search-client', {
             identifier: e.nativeEvent.target.identifier.value
         })
 

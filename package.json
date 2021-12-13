@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "PORT=3005 HTTPS=false react-scripts start",
-    "ssl": "export PORT=3005 HOST=siim.daule.gob.ec HTTPS=true SSL_CRT_FILE=/home/daule-app/ssl/OCTUBRE-2021/_daule_gob_ec.crt SSL_KEY_FILE=/home/daule-app/ssl/OCTUBRE-2021/_daule_gob_ec.key react-scripts start",
+    "ssl": "export PORT=3005 HOST=siim.daule.gob.ec HTTPS=true&&SSL_CRT_FILE=/home/daule-app/ssl/OCTUBRE-2021/_daule_gob_ec.crt&&SSL_KEY_FILE=/home/daule-app/ssl/OCTUBRE-2021/_daule_gob_ec.key react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

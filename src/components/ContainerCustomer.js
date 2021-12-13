@@ -33,6 +33,10 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        if ( total <= 19 ){
+            message.error('No se puede hacer un pago menor a $20', 2);
+            return;
+        }
         const body = getDataToPay(
             data,
             invoices,

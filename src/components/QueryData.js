@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { message, Spin } from 'antd';
-import { SocketContext } from '../context/SocketContext';
+import React, { useContext, useState } from 'react';
+import { notification, message, Spin } from 'antd';
 import { AllContext } from '../context/AllContext';
 import { useHistory } from 'react-router-dom';
 
 import img_next from '../assets/chevron-right-black.png';
 import img_search from '../assets/magnify-black.png';
+import { fetchConTocken } from '../helpers/fetch';
 
 
 export const QueryData = ({ setClient }) => {
@@ -13,48 +13,62 @@ export const QueryData = ({ setClient }) => {
     const history = useHistory();
     const { allState } = useContext( AllContext );
     const { ids } = allState;
-    const { socket } = useContext(SocketContext);
     const [isLoading, setIsLoading] = useState(false);
     const [total, setTotal] = useState(0);
-
-    useEffect(() => {
-        socket.on('search-client', data => {
-            let temp = 0;
-            if (!data || data.length <= 0) {
-                message.info("No contiene deuda", 2);
-                setClient({
-                    name: '',
-                    data: [],
-                })
-            } else {
-                setClient({
-                    name: data[0].apellido + ' ' + data[0].nombre,
-                    data: data,
-                })
-                data.forEach(invoice => temp += invoice.totalTarifa );
-            }
-            setTotal(temp.toFixed(2));
-            setIsLoading(false);
-        })
-    }, [socket , setClient, ids, setTotal])
 
     const onContinue = () => {
         history.replace('facturas-a-pagar');
     }
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
+    console.log('ref', isLoading);
 
-        if (!e.nativeEvent.target.identifier.value){
+    const onSubmit = async (e) => {
+        setIsLoading(true);
+        e.preventDefault();
+        const identifier = e.nativeEvent.target.identifier.value;
+        if (!identifier){
             message.error("Es necesario ingresar una Cédula-RUC", 2);
             return;
         }
-        socket && socket.emit('search-client', {
-            identifier: e.nativeEvent.target.identifier.value
-        })
+        const data = await fetchConTocken('deudas', identifier, 'POST');
+        let temp = 0;
+        if (!data || data.length <= 0) {
+            message.info("No contiene deuda", 2);
+            setClient({
+                name: '',
+                data: [],
+            })
+        } else {
+            setClient({
+                name: data[0].apellido + ' ' + data[0].nombre,
+                data: data,
+            })
+            data.forEach(invoice => temp += invoice.totalTarifa );
+        }
+        setTotal(temp.toFixed(2));
+         
+        const xhr = new XMLHttpRequest();
+        const url = `https://siim.daule.gob.ec:9443/place2/cgi-bin/pendingByCi.php?ci=${identifier}`;
+        xhr.open(
+            "GET",
+            url,
+            false,
+        )
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send();
+        if ( xhr.status === 200 ) {
+            if ( JSON.parse(xhr.response)[0] ) {
+                const args = {
+                    message: 'Transacciones pendientes',
+                    description: `Este contribuyente tiene transacciones pendientes, 
+                        a continuacion las referencias: ${JSON.parse(xhr.response).toString()}`,
+                    duration: 0
+                }
+                notification.info(args);
+            }
+        }
 
-        setIsLoading(true);
-            
+        setIsLoading( false );
     }
 
     return (

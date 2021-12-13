@@ -32,16 +32,19 @@ export const fetchConTocken = async( endpoint, data, method = 'GET') => {
         });
         return await resp.json();
     } else {
-        const resp = await fetch(url, {
+        const xhr = new XMLHttpRequest();
+        xhr.open(
             method,
-            mode: 'no-cors',
-            headers: {
-                'Content-type': 'application/json',
-                'Accesstoken': token
-            },
-            body: JSON.stringify(data)
-        })
-
-        return await resp.json();
+            url,
+            false
+        )
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.setRequestHeader("Accesstoken", token);
+        xhr.send( data );
+        if ( xhr.status === 200 ) { 
+            return JSON.parse( xhr.response );
+        } else {
+            return null;
+        }
     }
 }

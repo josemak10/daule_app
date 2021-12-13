@@ -3,9 +3,11 @@ import { v4 } from 'uuid';
 
 export const getDataToPay = (data, invoices, total, ip) => {
 
-    let ids_facturas = []
+    var dict_customer = {};
+    let ids_facturas = [];
     let base_iva = 0.0;
     invoices.forEach(invoice => {
+        dict_customer[invoice.cedula] = true;
         ids_facturas.push(invoice.id);
         invoice.facturaDetalles.forEach(detalle => {
             if (detalle.rubroDescripcion.toUpperCase()==='IVA'){
@@ -25,6 +27,7 @@ export const getDataToPay = (data, invoices, total, ip) => {
         tipo_doc: data.tipo_doc,
         total: total,
         ids_facturas: ids_facturas.toString(),
+        ids_clientes: Object.keys(dict_customer).toString(),
         ip_cliente: ip,
         referencia: referencia.substring(0, 32),
         base_ice: 0,

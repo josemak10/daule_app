@@ -176,7 +176,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(226, 171, 48, 0.1);
+  /* background-color: rgba(226, 171, 48, 0.1); */
 }
 
 .container-color-query-data {
@@ -245,7 +245,8 @@
 .container-list-data {
   height: 80%;
   padding: 5px 10px;
-  background-color: rgba(255, 255, 255, 0.7);
+  /* background-color: rgba(226, 171, 48, 0.1); */
+  background-color: rgba(226, 171, 48, 0.1);
   border-radius: 15px;
   display: flex;
   flex-direction: row;
@@ -564,6 +565,8 @@
 
 .table-data-text-oblique {
   font-style: oblique;
+  color: rgba(37, 84, 136, 1);
+  /* color: rgba(23, 61, 104, 1); */
 }
 
 .table-data-text-detalle {

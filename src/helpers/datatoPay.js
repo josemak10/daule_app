@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 
 
-export const getDataToPay = (data, invoices, total, ip) => {
+export const getDataToPay = (data, invoices, total, ip, navegador) => {
 
     var dict_customer = {};
     let ids_facturas = [];
@@ -34,5 +34,6 @@ export const getDataToPay = (data, invoices, total, ip) => {
         ice_amount: 0,
         base_iva: base_iva.toFixed(2),
         iva_percent: 12,
+        navegador
     };
 }

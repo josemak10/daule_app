@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { notification, message, Spin } from 'antd';
 import { AllContext } from '../context/AllContext';
 import { useHistory } from 'react-router-dom';
@@ -7,12 +7,15 @@ import img_next from '../assets/chevron-right-black.png';
 import img_search from '../assets/magnify-black.png';
 import { fetchConTocken } from '../helpers/fetch';
 
+const urlPending = process.env.REACT_APP_API_PENDING;
+
 
 export const QueryData = ({ setClient }) => {
  
     const history = useHistory();
     const { allState } = useContext( AllContext );
-    const { ids } = allState;
+    const { ids, invoices } = allState;
+    const [totalPayment, setTotalPayment] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [total, setTotal] = useState(0);
 
@@ -20,7 +23,11 @@ export const QueryData = ({ setClient }) => {
         history.replace('facturas-a-pagar');
     }
 
-    console.log('ref', isLoading);
+    useEffect(() => {
+        let temp = 0;
+        invoices.forEach(invoice => temp += invoice.totalTarifa );
+        setTotalPayment(temp.toFixed(2));
+    }, [invoices])
 
     const onSubmit = async (e) => {
         setIsLoading(true);
@@ -48,7 +55,7 @@ export const QueryData = ({ setClient }) => {
         setTotal(temp.toFixed(2));
          
         const xhr = new XMLHttpRequest();
-        const url = `https://siim.daule.gob.ec:9443/place2/cgi-bin/pendingByCi.php?ci=${identifier}`;
+        const url = `${urlPending}=${identifier}`;
         xhr.open(
             "GET",
             url,
@@ -101,9 +108,14 @@ export const QueryData = ({ setClient }) => {
             </div>
             <div className="container-query-data-input">
                 <label 
-                    className="container-total-data-text-total"
+                    className="container-total-data-text-total text-font"
                 >
-                    Total a pagar: $ {total} 
+                    Deuda total: $ {total} 
+                </label>
+                <label 
+                    className="container-total-data-text-total-yellow text-font"
+                >
+                    Monto a pagar: $ {totalPayment} 
                 </label>
                 <button
                     onClick={onContinue}

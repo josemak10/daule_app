@@ -8,6 +8,8 @@ import { validateEmail } from '../helpers/validateEmail';
 import img_customer from '../assets/shield-account-black.png';
 import img_payment from '../assets/currency-usd-black.png';
 
+const urlPayment = process.env.REACT_APP_API_PAYMENT;
+
 
 export const ContainerCustomer = ({ total, invoices, isDone }) => {
 
@@ -46,8 +48,9 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
         const xhr = new XMLHttpRequest();
         xhr.open(
             "POST",
-            "https://siim.daule.gob.ec:9443/place2/cgi-bin/pay.php"
+            urlPayment
         )
+        message.loading('Espere unos segundos mientras se carga la pagina', 2);
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.onreadystatechange = function () {
@@ -56,7 +59,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                 window.open(url, "_self", 'noopener,noreferrer');
             }
             setIsLoading(false);
-            message.loading('Espere unos segundos mientras se carga la pagina', 2);
         }
         xhr.send( JSON.stringify(body) );
         setIsLoading(true);

@@ -31,7 +31,7 @@ export const Home = ({ setIsCaptcha }) => {
                     />
                     { captchaValidate===false && (
                         <div
-                            className="text-captcha-required"
+                            className="text-captcha-required text-font"
                         >Por favor acepta el captcha</div>
                     )}
                 </div>

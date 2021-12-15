@@ -5,6 +5,9 @@ import { useHistory } from 'react-router-dom';
 import img_search from '../assets/magnify-black.png';
 import img_return from '../assets/chevron-left-black.png';
 
+const urLConsulting = process.env.REACT_APP_API_CONSULTING;
+
+
 export const HistoryRename = () => {
 
     const history = useHistory();
@@ -24,12 +27,11 @@ export const HistoryRename = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        const url = `https://siim.daule.gob.ec:9443/place2/cgi-bin/history.php?ref=${e.nativeEvent.target.referencia.value}`;
+        const url = `${urLConsulting}=${e.nativeEvent.target.referencia.value}`;
         const xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
             url,
-            // 'no-cors'
         )
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.onreadystatechange = function () {

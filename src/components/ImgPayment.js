@@ -15,7 +15,7 @@ export const ImgPayment = () => {
                 href={file_questions_currents}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="container-img-payment-link"
+                className="container-img-payment-link text-font"
             >
                 Preguntas frecuentes</a>
             <label
@@ -24,7 +24,7 @@ export const ImgPayment = () => {
                     color: '#1890FF'
                 }}
                 onClick={onClick}
-                className="container-img-payment-link"
+                className="container-img-payment-link text-font"
             >
                 Historial transacciones</label>
         </div>

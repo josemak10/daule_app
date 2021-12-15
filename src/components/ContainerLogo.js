@@ -13,7 +13,7 @@ export const ContainerLogo = () => {
                 height="100%"
             />
             <div
-                className="container-title-text"
+                className="container-title-text text-font"
             >
                 Pagos en Línea
             </div>

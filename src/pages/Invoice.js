@@ -46,21 +46,14 @@ export const Invoice = () => {
                     Regresar
                 </button>
                 <label
-                    className="container-total-data-text-total"
+                    className="container-total-data-text-total text-font"
                 >
                     Total a pagar: {total.toFixed(2)}
                 </label>
                 <label
-                    // onClick={toNext}
-                    // disabled={invoices.length===0}
+                    className='text-font'
                 >
-                    GADM Daule
-                    {/* <img
-                        src={img_next}
-                        alt="next"
-                        width="22px"
-                        height="22px"
-                    /> */}
+                    GADM DAULE
                 </label>
             </div>
             <ContainerCustomer total={total} invoices={invoices} isDone={isDone} />

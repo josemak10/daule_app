@@ -65,10 +65,9 @@ export const ContainerInvoices = () => {
                     Regresar
                 </button>
                 <label
-                    className="container-total-data-text-total"
+                    className="container-total-data-text-total text-font"
                 >Total a pagar: $ {total} </label>
                 <button
-                    // className="container-invoice-data-title"
                     onClick={toNext}
                     disabled={invoices.length===0}
                 >

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import img_credit_cards from '../assets/credit-cards.jpeg';
+
 
 export const ContainerTotal = ({ total, setIsDone, isDone }) => {
 
@@ -29,6 +31,12 @@ export const ContainerTotal = ({ total, setIsDone, isDone }) => {
                     alt="Logo PlaceToPay"
                     width="75px"
                     height="65px"
+                />
+                <img
+                    src={img_credit_cards}
+                    alt="Logo Tarjetas credito"
+                    width="300px"
+                    height="40px"
                 />
             </div>
         </div>

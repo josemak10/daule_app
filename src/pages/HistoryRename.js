@@ -50,10 +50,11 @@ export const HistoryRename = () => {
                             state = 'Pendiente';
                             break;
                     }
+                    const surname = result.request.buyer.surname ? result.request.buyer.surname : '';
                     setData({
                         identifier: result.request.buyer.document,
-                        name: `${result.request.buyer.name} ${result.request.buyer.surname}`,
-                        amount: result.request.payment.amount.total,
+                        name: `${result.request.buyer.name} ${surname}`,
+                        amount: `$ ${result.request.payment.amount.total}`,
                         state,
                         message: result.status.message,
                         date: result.status.date,

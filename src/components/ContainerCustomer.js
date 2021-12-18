@@ -94,14 +94,17 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
             message.error('Todos los campos son requeridos', 2);
         } else {
             const v_text_space = /^[a-zA-Z\s]*$/;
-            if ( !v_text_space.test(dataTemp.nombre) || !v_text_space.test(dataTemp.apellido) ) {
+            const v_text_space_number = /^[a-zA-Z0-9\s]*$/;
+            if ( dataTemp.tipo_doc!=='RUC' && (!v_text_space.test(dataTemp.nombre) || !v_text_space.test(dataTemp.apellido)) ) {
                 message.error("El campo nombre y apellido no se aceptan números y/o caracteres especiales", 3);
+            } else if ( dataTemp.tipo_doc==='RUC' && (!v_text_space_number.test(dataTemp.nombre) || !v_text_space_number.test(dataTemp.apellido)) ) {
+                message.error("El campo Razón Social no se aceptan caracteres especiales", 3);
             } else if ( dataTemp.tipo_doc==='CI' && dataTemp.cedula.length !== 10 ) {
                 message.error("La CI esta mal tipeada", 2);
             } else if ( dataTemp.tipo_doc==='RUC' && dataTemp.cedula.length !== 13 ) {
                 message.error("El RUC esta mal tipeado", 2);
-            } else if ( dataTemp.tipo_doc==='RUC' && dataTemp.cedula.length !== 13 ) {
-                message.error("El RUC esta mal tipeado", 2);
+            } else if ( dataTemp.celular.length < 8 || dataTemp.celular.length > 30 ) {
+                message.error("El número debe tener más de 8 y menos de 30 caracteres", 2);
             } else if ( !validateEmail(dataTemp.email) ){
                 message.error("Email incorrecto", 2);
             }

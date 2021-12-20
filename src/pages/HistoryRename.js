@@ -11,15 +11,7 @@ const urLConsulting = process.env.REACT_APP_API_CONSULTING;
 export const HistoryRename = () => {
 
     const history = useHistory();
-    const [data, setData] = useState({
-        identifier: '',
-        name: '',
-        amount: '',
-        state: '',
-        message: '',
-        date: '',
-        description: ''
-    })
+    const [data, setData] = useState([]);
 
     const toReturn = () => {
         history.replace('/pagos-en-line');
@@ -36,10 +28,12 @@ export const HistoryRename = () => {
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.onreadystatechange = function () {
             if ( xhr.readyState===4) {
-                const result = JSON.parse(xhr.response);
-                if (result) {
+                const temp = JSON.parse(xhr.response);
+                let list = [];
+                temp.forEach(result => {
+                    const row = JSON.parse(result);
                     let state = '';
-                    switch (result.status.status) {
+                    switch (row.status.status) {
                         case 'REJECTED':
                             state = 'Rechazada';
                             break;
@@ -50,27 +44,19 @@ export const HistoryRename = () => {
                             state = 'Pendiente';
                             break;
                     }
-                    const surname = result.request.buyer.surname ? result.request.buyer.surname : '';
-                    setData({
-                        identifier: result.request.buyer.document,
-                        name: `${result.request.buyer.name} ${surname}`,
-                        amount: `$ ${result.request.payment.amount.total}`,
+                    const surname = row.request.buyer.surname ? row.request.buyer.surname : '';
+                    list.push({
+                        identifier: row.request.buyer.document,
+                        name: `${row.request.buyer.name} ${surname}`,
+                        amount: `${row.request.payment.amount.total}`,
                         state,
-                        message: result.status.message,
-                        date: result.status.date,
-                        description: result.request.payment.description
+                        message: row.status.message,
+                        date: row.status.date,
+                        description: row.request.payment.description,
+                        reference: row.request.payment.reference
                     })
-                } else {
-                    setData({
-                        identifier: '',
-                        name: '',
-                        amount: '',
-                        state: '',
-                        message: '',
-                        date: '',
-                        description: ''
-                    })
-                }
+                })
+                setData(list);
             }
         }
         xhr.send();
@@ -97,7 +83,7 @@ export const HistoryRename = () => {
                     <input
                         id="referencia"
                         name="referencia"
-                        placeholder="# Transacción"
+                        placeholder="CI / RUC / Pasaporte"
                         required
                         className="container-data-payment-input-design
                             container-customer-input-text

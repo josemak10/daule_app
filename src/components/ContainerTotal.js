@@ -14,11 +14,14 @@ export const ContainerTotal = ({ total, setIsDone, isDone }) => {
             <div 
                 className="container-total-block2"
             >   
-                <label
+                <a
                     className="container-total-text"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://siim.daule.gob.ec:9443/recursos_siim/aplicacionMovil/Terminos_condiciones_boton.pdf"
                 >
                     Al marcar la casilla el usuario acepta los términos y condiciones del servicio.
-                </label>
+                </a>
                 <input
                     id="done"
                     name="done"

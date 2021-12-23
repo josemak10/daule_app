@@ -5,7 +5,6 @@ import { ContainerCustomer } from '../components/ContainerCustomer';
 import { AllContext } from '../context/AllContext';
 import { useHistory } from 'react-router-dom';
 
-import img_return from '../assets/chevron-left-black.png';
 
 export const Invoice = () => {
 
@@ -36,13 +35,14 @@ export const Invoice = () => {
             <div className="container-query-data-input">
                 <button
                     onClick={toReturn}
+                    className="container-button text-font"
                 >
-                    <img
+                    {/* <img
                         src={img_return}
                         alt="next"
                         width="22px"
                         height="22px"
-                    />
+                    /> */}
                     Regresar
                 </button>
                 <label

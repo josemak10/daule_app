@@ -3,8 +3,6 @@ import { notification, message, Spin } from 'antd';
 import { AllContext } from '../context/AllContext';
 import { useHistory } from 'react-router-dom';
 
-import img_next from '../assets/chevron-right-black.png';
-import img_search from '../assets/magnify-black.png';
 import { fetchConTocken } from '../helpers/fetch';
 
 const urlPending = process.env.REACT_APP_API_PENDING;
@@ -95,14 +93,15 @@ export const QueryData = ({ setClient }) => {
                 <Spin spinning={isLoading}>
                     <button
                         type="submit"
+                        className="container-button text-font"
                     >
                         Consultar
-                        <img
+                        {/* <img
                             src={img_search}
                             alt="next"
                             width="20px"
                             height="20px"
-                        />
+                        /> */}
                     </button>
                 </Spin>
             </div>
@@ -120,14 +119,15 @@ export const QueryData = ({ setClient }) => {
                 <button
                     onClick={onContinue}
                     disabled={ids.length===0} 
+                    className="container-button text-font"
                 >
                     Continuar
-                    <img
+                    {/* <img
                         src={img_next}
                         alt="next"
                         width="22px"
                         height="22px"
-                    />
+                    /> */}
                 </button>
             </div>
         </form>

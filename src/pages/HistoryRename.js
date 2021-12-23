@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 import { HistoryData } from '../components/HistoryData';
 import { useHistory } from 'react-router-dom';
 
-import img_search from '../assets/magnify-black.png';
-import img_return from '../assets/chevron-left-black.png';
-
 const urLConsulting = process.env.REACT_APP_API_CONSULTING;
 
 
@@ -71,13 +68,14 @@ export const HistoryRename = () => {
                 <div className="container-query-data-input">
                     <button
                         onClick={toReturn}
+                        className="container-button text-font"
                     >
-                        <img
+                        {/* <img
                             src={img_return}
                             alt="next"
                             width="22px"
                             height="22px"
-                        />
+                        /> */}
                         Regresar
                     </button>   
                     <input
@@ -89,14 +87,17 @@ export const HistoryRename = () => {
                             container-customer-input-text
                             container-customer-input-text-reference-size"
                     />
-                    <button type="submit">
+                    <button
+                        type="submit"
+                        className="container-button text-font"
+                    >
                         Consultar
-                        <img
+                        {/* <img
                             src={img_search}
                             alt="next"
                             width="20px"
                             height="20px"
-                        />
+                        /> */}
                     </button>
                 </div>
             </form>

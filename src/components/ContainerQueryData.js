@@ -11,6 +11,8 @@ export const ContainerQueryData = () => {
     const { allState } = useContext( AllContext );
     const { invoices } = allState;
     const [isCaptcha, setIsCaptcha] = useState(false);
+    const [identifier, setIdentifier] = useState(null);
+    const [total, setTotal] = useState(0);
     const [client, setClient] = useState({
         name: '',
         data: [],
@@ -34,8 +36,14 @@ export const ContainerQueryData = () => {
             {
                 ( isCaptcha ) 
                     ? (
-                        <>
-                            <QueryData setClient={setClient} />
+                        <div
+                            className='container-style-size'
+                        >
+                            <QueryData 
+                                setClient={setClient}
+                                uid={identifier}
+                                total_temp={total}
+                            />
                             <ImgPayment />
                             <List
                                 className="container-query-data-list"
@@ -51,10 +59,16 @@ export const ContainerQueryData = () => {
                                 ) }
                             >
                             </List>
-                        </>
+                        </div>
                     )
                     : (
-                        <Home setIsCaptcha={setIsCaptcha} />
+                        <Home 
+                            setIsCaptcha={setIsCaptcha}
+                            identifier={identifier}
+                            setIdentifier={setIdentifier}
+                            setClient={setClient}
+                            setTotal={setTotal}
+                        />
                     )
             }
         </div>

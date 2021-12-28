@@ -13,52 +13,57 @@ export const TableData = ({ invoice, actionButton, action = 1 }) => {
     const { ids } = allState;
 
     return (
-        <div
-            className={`container-list-data ${(ids.includes(invoice.id)) && ( action===1 ) && 'invoice-selected'}`}
-        >
+        <div className="container-list-data-global">
+            <Tag
+                color={ getColorByModule(invoice.idModulo) }
+                className="table-data-text"
+            >{invoice.modulo}</Tag>
             <div
-                className="container-list-data-block1"
+                className={`container-list-data ${(ids.includes(invoice.id)) && ( action===1 ) && 'invoice-selected'}`}
             >
-                <div className="container-table-data-firt-row">
-                    <Tag
-                        color={ getColorByModule(invoice.idModulo) }
-                        className="table-data-text"
-                    >{invoice.modulo}</Tag>
+                <div
+                    className="container-list-data-block1"
+                >
+                    <div className="container-table-data-firt-row">
                     <label
-                        className="table-data-text"
-                    > Referencia:  {invoice.referencia} </label>
-                </div>
+                        className="table-data-text table-data-text-oblique"
+                    > 
+                        {invoice.apellido + ' ' + invoice.nombre + ' - ' + invoice.cedula} 
+                    </label>
+                        <label
+                            className="table-data-text"
+                        > Referencia:  {invoice.referencia} </label>
+                    </div>
 
-                <label
-                    className="table-data-text table-data-text-oblique"
-                > {invoice.apellido + ' ' + invoice.nombre + ' - ' + invoice.cedula} </label>
-                <label
-                    className="table-data-text-detalle"
-                >{invoice.concepto}</label>
-            </div>
-                        
-            <div
-                className="container-list-data-block2"
-            >
-                <label
-                    className="container-list-data-block2-total"
-                >$ {invoice.totalTarifa}</label>
-                {
-                    (!invoice.isCoactiva) && (
-                        <img
-                            src={(action===1) 
-                                ? img_cart_plus 
-                                : img_cart_remove}
-                            alt="cart plus"
-                            width="30px"
-                            height="30px"
-                            style={{
-                                cursor: 'pointer',
-                            }}
-                            onClick={e => actionButton(e, invoice)}
-                        />
-                    )
-                }
+                    
+                    <label
+                        className="table-data-text-detalle"
+                    >{invoice.concepto}</label>
+                </div>
+                            
+                <div
+                    className="container-list-data-block2"
+                >
+                    <label
+                        className="container-list-data-block2-total"
+                    >$ {invoice.totalTarifa}</label>
+                    {
+                        (!invoice.isCoactiva) && (
+                            <img
+                                src={(action===1) 
+                                    ? img_cart_plus 
+                                    : img_cart_remove}
+                                alt="cart plus"
+                                width="30px"
+                                height="30px"
+                                style={{
+                                    cursor: 'pointer',
+                                }}
+                                onClick={e => actionButton(e, invoice)}
+                            />
+                        )
+                    }
+                </div>
             </div>
         </div>
     )

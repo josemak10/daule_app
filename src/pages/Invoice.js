@@ -51,7 +51,7 @@ export const Invoice = () => {
                     Total a pagar: {total.toFixed(2)}
                 </label>
                 <label
-                    className='text-font'
+                    className='text-font text-white'
                 >
                     GADM DAULE
                 </label>

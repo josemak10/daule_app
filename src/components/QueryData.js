@@ -8,19 +8,20 @@ import { fetchConTocken } from '../helpers/fetch';
 const urlPending = process.env.REACT_APP_API_PENDING;
 
 
-export const QueryData = ({ setClient }) => {
+export const QueryData = ({ setClient, uid, total_temp }) => {
  
     const history = useHistory();
     const { allState } = useContext( AllContext );
     const { ids, invoices } = allState;
     const [totalPayment, setTotalPayment] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
-    const [total, setTotal] = useState(0);
+    const [total, setTotal] = useState(total_temp);
 
     const onContinue = () => {
         history.replace('facturas-a-pagar');
     }
 
+    console.log(isLoading);
     useEffect(() => {
         let temp = 0;
         invoices.forEach(invoice => temp += invoice.totalTarifa );
@@ -42,13 +43,15 @@ export const QueryData = ({ setClient }) => {
             setClient({
                 name: '',
                 data: [],
-            })
+            });
+            setIsLoading( false );
         } else {
             setClient({
                 name: data[0].apellido + ' ' + data[0].nombre,
                 data: data,
             })
             data.forEach(invoice => temp += invoice.totalTarifa );
+            setIsLoading( false );
         }
         setTotal(temp.toFixed(2));
          
@@ -72,8 +75,6 @@ export const QueryData = ({ setClient }) => {
                 notification.info(args);
             }
         }
-
-        setIsLoading( false );
     }
 
     return (
@@ -86,6 +87,8 @@ export const QueryData = ({ setClient }) => {
                     type="text"
                     name="identifier"
                     id="identifier"
+                    defaultValue={uid}
+                    // onChange={onChange}
                     placeholder="CI / RUC"
                     className="container-data-payment-input-design
                         container-customer-input-text"

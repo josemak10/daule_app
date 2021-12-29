@@ -6,7 +6,7 @@ import { types } from '../types/types';
 import { TableData } from './TableData';
 import { selectionGeneral } from '../types/selectionGeneral';
 
-export const ListData = ({ invoice, client, setClient }) => {
+export const ListData = ({ invoice, client, setClient, index}) => {
 
     const { dispatch } = useContext( AllContext );
 
@@ -30,6 +30,6 @@ export const ListData = ({ invoice, client, setClient }) => {
     }
 
     return (
-        <TableData invoice={invoice} actionButton={addPlus} />
+        <TableData invoice={invoice} actionButton={addPlus} index={index} />
     )
 }

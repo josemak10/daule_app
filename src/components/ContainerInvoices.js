@@ -83,12 +83,13 @@ export const ContainerInvoices = () => {
             <List
                 className="container-invoice-data-list"
                 dataSource={ client.data }
-                renderItem={ invoice => (
+                renderItem={ (invoice, index) => (
                     <List.Item>
                         <TableData
                             invoice={invoice}
                             actionButton={removeInvoice}
                             action={2}
+                            index={index}
                         />
                     </List.Item>
                 ) }

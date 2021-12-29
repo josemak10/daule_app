@@ -19,7 +19,7 @@ export const TableHistory = ({ row }) => {
                         {row.state}
                     </Tag>
                     <label
-                        className="table-data-text"
+                        className="table-data-text-reference"
                     > 
                         Referencia:  {row.reference}
                     </label>

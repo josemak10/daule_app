@@ -93,8 +93,8 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
         } else if (dataTemp.tipo_doc!=='RUC' && dataTemp.nombre==='') {
             message.error('Todos los campos son requeridos', 2);
         } else {
-            const v_text_space = /^[a-zA-Z\s]*$/;
-            const v_text_space_number = /^[a-zA-Z0-9\s]*$/;
+            const v_text_space = /^[a-zA-Z\u00f1\u00d1áéíóúÁÉÍÓÚ\s]*$/;
+            const v_text_space_number = /^[a-zA-Z0-9\u00f1\u00d1áéíóúÁÉÍÓÚ\s]*$/;
             if ( dataTemp.tipo_doc!=='RUC' && (!v_text_space.test(dataTemp.nombre) || !v_text_space.test(dataTemp.apellido)) ) {
                 message.error("El campo nombre y apellido no se aceptan números y/o caracteres especiales", 3);
             } else if ( dataTemp.tipo_doc==='RUC' && (!v_text_space_number.test(dataTemp.nombre) || !v_text_space_number.test(dataTemp.apellido)) ) {

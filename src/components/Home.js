@@ -20,7 +20,8 @@ export const Home = ({ setIsCaptcha, setIdentifier, identifier, setClient, setTo
         }
     }
 
-    const onClick = async () => {
+    const onClick = async (e) => {
+        e.preventDefault();
         if ( identifier===null || identifier==='' ) {
             message.error('Ingrese una CI / RUC', 2);
             return;

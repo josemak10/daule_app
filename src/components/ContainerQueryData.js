@@ -48,12 +48,13 @@ export const ContainerQueryData = () => {
                             <List
                                 className="container-query-data-list"
                                 dataSource={ client.data }
-                                renderItem={ invoice => (
+                                renderItem={ (invoice, index) => (
                                     <List.Item >
                                         <ListData
                                             invoice={invoice}
                                             client={client}
                                             setClient={setClient}
+                                            index={index}
                                         />
                                     </List.Item>
                                 ) }

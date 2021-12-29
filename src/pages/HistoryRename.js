@@ -17,6 +17,7 @@ export const HistoryRename = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         const url = `${urLConsulting}=${e.nativeEvent.target.referencia.value}`;
+        console.log('url', url);
         const xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
@@ -48,7 +49,7 @@ export const HistoryRename = () => {
                         amount: `${row.request.payment.amount.total}`,
                         state,
                         message: row.status.message,
-                        date: row.status.date,
+                        date: row.status.date.toString().substring(0,10),
                         description: row.request.payment.description,
                         reference: row.request.payment.reference
                     })

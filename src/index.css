@@ -171,7 +171,7 @@
 .container-query-data-input {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 1%;
   width: 100%;
@@ -201,7 +201,7 @@
   height: 80%;
   padding: 5px 10px;
   /* background-color: rgba(226, 171, 48, 0.1); */
-  background-color: rgba(226, 171, 48, 0.1);
+  /* background-color: rgba(226, 171, 48, 0.1); */
   border-radius: 15px;
   display: flex;
   flex-direction: row;
@@ -339,14 +339,14 @@
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 550;
-  color: rgb(161, 7, 7);
+  /* color: rgb(161, 7, 7); */
 }
 
 .container-total-data-text-total-yellow {
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 550;
-  color: #e2ab30;
+  /* color: #e2ab30; */
 }
 
 .container-total-input-text-total {
@@ -526,8 +526,8 @@
   margin-left: 25px;
 }
 .invoice-selected {
-  /* background-color: rgba(232, 44, 139, 0.9); */
-  background-color: rgba(0, 161, 248, 0.8);
+  background-color: rgba(167, 167, 167, 0.4);
+  /* background-color: rgba(0, 161, 248, 0.8); */
 }
 
 .container-table-data-firt-row {
@@ -537,6 +537,11 @@
 
 .table-data-text {
   text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.table-data-text-reference {
   font-size: 12px;
   font-weight: 600;
 }

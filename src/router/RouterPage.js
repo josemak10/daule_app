@@ -22,7 +22,7 @@ export const RouterPage = () => {
                     src={ img_header }
                     alt='header'
                     width="100%"
-                    height="18%"
+                    height="auto"
                 />
                 <Switch>
                     <Route exact path="/pagos-en-linea" component={ContainerQueryData} />
@@ -35,7 +35,7 @@ export const RouterPage = () => {
                     src={ img_footer }
                     alt='header'
                     width="100%"
-                    height="7%"
+                    height="auto"
                 />
             </div>
         </Router>

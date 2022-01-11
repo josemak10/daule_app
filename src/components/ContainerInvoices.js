@@ -49,35 +49,27 @@ export const ContainerInvoices = () => {
     }
 
     return (
-        <div className="container-style" >
-            <div className="container-query-data-input">
+        <div>
+            <div
+                className="row justify-content-between after-component before-component"
+            >
                 <button
                     onClick={toReturn}
-                    className="container-button text-font"
+                    className="col-auto col-md-2 container-button text-font"
                 >
-                    {/* <img
-                        src={img_return}
-                        alt="next"
-                        width="22px"
-                        height="22px"
-                    /> */}
                     Regresar
                 </button>
                 <label
-                    className="container-total-data-text-total text-font"
-                >Total a pagar: $ {total} </label>
+                    className="col-auto container-total-data-text-total text-font"
+                >
+                    Total a pagar: $ {total} 
+                </label>
                 <button
                     onClick={toNext}
                     disabled={invoices.length===0}
-                    className="container-button text-font"
+                    className="col-auto col-md-2 container-button text-font"
                 >
                     Continuar
-                    {/* <img
-                        src={img_next}
-                        alt="next"
-                        width="22px"
-                        height="22px"
-                    /> */}
                 </button>
             </div>
             <List

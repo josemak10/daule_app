@@ -121,141 +121,165 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
 
     return (
         <form
-            className="container-customer"
+            // className="container-customer"
         >
-            <label
-                className="container-customer-data-text"
-            >
-                Tipo Identificador</label>
-            <input
-                id="tipo_doc"
-                name="tipo_doc"
-                placeholder="CI / RUC"
-                disabled
-                value={ data.tipo_doc }
-                className="container-data-payment-input-design
-                    container-customer-input-text
-                    container-customer-input-text-size"
-            />
-            <label
-                className="container-customer-data-text"
-            >
-                Identificador</label>
-            <input
-                id="cedula"
-                name="cedula"
-                placeholder="0000000000"
-                type="number"
-                disabled
-                value={ data.cedula }
-                className="container-data-payment-input-design
-                    container-customer-input-text
-                    container-customer-input-text-size"
-            />
-            { 
-                ( data.tipo_doc==='RUC' ) 
-                    ? <label 
-                        className="container-customer-data-text"
-                        > Razón Social </label> 
-                    : <label 
-                        className="container-customer-data-text"
-                        > Apellido </label> 
-            }
-            <input
-                id="apellido"
-                name="apellido"
-                placeholder={ ( data.tipo_doc==='RUC' ) 
-                                    ? "Razón Social" 
-                                    : "Apellido" }
-                type="text"
-                disabled
-                value={ data.apellido }
-                className="container-customer-input-text
-                    container-customer-input-text-size
-                    container-data-payment-input-design"
-            />
-            {
-                ( data.tipo_doc!=='RUC' ) && (
-                    <>
-                        <label
-                            className="container-customer-data-text"
-                        > 
-                            Nombre </label>
-                        <input
-                            id="nombre"
-                            name="nombre"
-                            placeholder="Nombre"
-                            type="text"
-                            disabled
-                            value={ data.nombre }
-                            className="container-customer-input-text
-                                container-customer-input-text-size
-                                container-data-payment-input-design"
-                        />
-                    </>
-                )
-            }
-            <label
-                className="container-customer-data-text"
-            > 
-                Email </label>
-            <input
-                id="email"
-                name="email"
-                placeholder="Email"
-                type="email"
-                value={ data.email }
-                disabled
-                className="container-customer-input-text-email
-                    container-data-payment-input-design
-                    container-customer-input-text-size"
-            />
-                
-            <label
-                className="container-customer-data-text"
-            > 
-                Teléfono </label>
-            <input
-                id="celular"
-                name="celular"
-                placeholder="Telefono"
-                type="number"
-                value={ data.celular }
-                disabled
-                className="container-data-payment-input-design
-                    container-customer-input-text
-                    container-customer-input-text-size"
-            />
-            <br />
-            <button
-                onClick={onClick}
-            >
-                Registrar datos para el pago
-                <img
-                    src={img_customer}
-                    alt="next"
-                    width="22px"
-                    height="22px"
+            <div className="row justify-content-center before-component">
+                <label
+                    className="col-10 col-md-2 container-customer-data-text"
+                >
+                    Tipo Identificador</label>
+            
+                <input
+                    id="tipo_doc"
+                    name="tipo_doc"
+                    placeholder="CI / RUC"
+                    disabled
+                    value={ data.tipo_doc }
+                    className="col-10 col-md-4
+                        container-data-payment-input-design
+                        container-customer-input-text"
+                        // container-customer-input-text-size"
                 />
-            </button>
-            <div>
+            </div>
+            <div className="row justify-content-center before-component">
+                <label
+                    className="col-10 col-md-2 container-customer-data-text"
+                >
+                    Identificador</label>
+                <input
+                    id="cedula"
+                    name="cedula"
+                    placeholder="0000000000"
+                    type="number"
+                    disabled
+                    value={ data.cedula }
+                    className="col-10 col-md-4
+                        container-data-payment-input-design
+                        container-customer-input-text"
+                        // container-customer-input-text-size"
+                />
+            </div>
+            <div className="row justify-content-center before-component">
+                { 
+                    ( data.tipo_doc==='RUC' ) 
+                        ? <label 
+                            className="col-10 col-md-2
+                                container-customer-data-text"
+                            > Razón Social </label> 
+                        : <label 
+                            className="col-10 col-md-2
+                                container-customer-data-text"
+                            > Apellido </label> 
+                }
+                <input
+                    id="apellido"
+                    name="apellido"
+                    placeholder={ ( data.tipo_doc==='RUC' ) 
+                                        ? "Razón Social" 
+                                        : "Apellido" }
+                    type="text"
+                    disabled
+                    value={ data.apellido }
+                    className="col-10 col-md-4
+                        container-customer-input-text
+                        container-data-payment-input-design"
+                        // container-customer-input-text-size
+                />
+            </div>
+            <div className="row justify-content-center before-component">
+                {
+                    ( data.tipo_doc!=='RUC' ) && (
+                        <>
+                            <label
+                                className="col-10 col-md-2
+                                    container-customer-data-text"
+                            > 
+                                Nombre </label>
+                            <input
+                                id="nombre"
+                                name="nombre"
+                                placeholder="Nombre"
+                                type="text"
+                                disabled
+                                value={ data.nombre }
+                                className="col-10 col-md-4
+                                    container-customer-input-text
+                                    container-data-payment-input-design"
+                                    // container-customer-input-text-size
+                            />
+                        </>
+                    )
+                }
+            </div>
+            <div className="row justify-content-center before-component">
+                <label
+                    className="col-10 col-md-2 container-customer-data-text"
+                > 
+                    Email </label>
+                <input
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    type="email"
+                    value={ data.email }
+                    disabled
+                    className="col-10 col-md-4
+                        container-customer-input-text-email
+                        container-data-payment-input-design"
+                        // container-customer-input-text-size"
+                />
+            </div>
+            <div className="row justify-content-center before-component">
+                <label
+                    className="col-10 col-md-2 container-customer-data-text"
+                > 
+                    Teléfono </label>
+                <input
+                    id="celular"
+                    name="celular"
+                    placeholder="Telefono"
+                    type="number"
+                    value={ data.celular }
+                    disabled
+                    className="col-10 col-md-4
+                        container-data-payment-input-design
+                        container-customer-input-text"
+                        // container-customer-input-text-size"
+                />
+            </div>
+            <div className="row justify-content-center footer before-component">
+                <button
+                    onClick={onClick}
+                    className="col-auto col-sm-auto container-button-data-customer text-font"
+                >
+                    Registrar datos para el pago
+                    <img
+                        src={img_customer}
+                        alt="next"
+                        width="22px"
+                        height="22px"
+                    />
+                </button>
+            </div>
+            <div className="row justify-content-center">
                 {
                     (invoices.length > 0 && data.cedula!=='' && isDone) && (
                         <>
-                            <Spin spinning={isLoading}>
-                                <button
-                                    onClick={ onSubmit }
-                                    disabled={invoices.length===0}
-                                >
-                                    Pagar
-                                    <img
-                                        src={img_payment}
-                                        alt="payment"
-                                        width="22px"
-                                        height="22px"
-                                    />
-                                </button>   
-                            </Spin>
+                            {/* <Spin spinning={isLoading}> */}
+                            <button
+                                onClick={ onSubmit }
+                                disabled={invoices.length===0}
+                                className="col-auto container-button-payment"
+                            >
+                                Pagar
+                                <img
+                                    src={img_payment}
+                                    alt="payment"
+                                    width="22px"
+                                    height="22px"
+                                />
+                            </button>   
+                            {/* </Spin> */}
 
                         </>
                     )

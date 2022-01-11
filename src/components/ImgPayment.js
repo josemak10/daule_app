@@ -10,12 +10,12 @@ export const ImgPayment = () => {
     }
 
     return (
-        <div className="container-img-payment">
+        <div className="row justify-content-around after-component before-component" >
             <a 
                 href={file_questions_currents}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="container-img-payment-link text-font"
+                className="col-5 col-md-3 container-img-payment-link text-font"
             >
                 Preguntas frecuentes</a>
             <label
@@ -24,7 +24,7 @@ export const ImgPayment = () => {
                     color: '#1890FF'
                 }}
                 onClick={onClick}
-                className="container-img-payment-link text-font"
+                className="col-5 col-md-3 container-img-payment-link text-font"
             >
                 Historial transacciones</label>
         </div>

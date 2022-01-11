@@ -32,13 +32,11 @@ export const ContainerQueryData = () => {
     }, [])
 
     return (
-        <div  className="container-style" >
+        <div >
             {
                 ( isCaptcha ) 
                     ? (
-                        <div
-                            className='container-style-size'
-                        >
+                        <div>
                             <QueryData 
                                 setClient={setClient}
                                 uid={identifier}

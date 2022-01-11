@@ -17,7 +17,6 @@ export const HistoryRename = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         const url = `${urLConsulting}=${e.nativeEvent.target.referencia.value}`;
-        console.log('url', url);
         const xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
@@ -29,29 +28,18 @@ export const HistoryRename = () => {
                 const temp = JSON.parse(xhr.response);
                 let list = [];
                 temp.forEach(result => {
-                    const row = JSON.parse(result);
-                    let state = '';
-                    switch (row.status.status) {
-                        case 'REJECTED':
-                            state = 'Rechazada';
-                            break;
-                        case 'APPROVED':
-                            state = 'Aprobado';
-                            break;
-                        default:
-                            state = 'Pendiente';
-                            break;
-                    }
-                    const surname = row.request.buyer.surname ? row.request.buyer.surname : '';
+                    const row = result;
+                    let state = row.status;
+                    const surname = ''
                     list.push({
-                        identifier: row.request.buyer.document,
-                        name: `${row.request.buyer.name} ${surname}`,
-                        amount: `${row.request.payment.amount.total}`,
+                        identifier: row.document,
+                        name: surname,
+                        amount: `${row.total}`,
                         state,
-                        message: row.status.message,
-                        date: row.status.date.toString().substring(0,10),
-                        description: row.request.payment.description,
-                        reference: row.request.payment.reference
+                        message: row.message,
+                        date: `Fecha Transacción: ${row.date.toString().substring(0,10)}`,
+                        description: '',
+                        reference: row.referencia
                     })
                 })
                 setData(list);
@@ -61,22 +49,18 @@ export const HistoryRename = () => {
     }
 
     return (
-        <div className="container-style">
+        <div>
             <form
-                className="container-history"
                 onSubmit={ onSubmit }
+                // className="before-component"
             >
-                <div className="container-query-data-input">
+                <div
+                    className="row justify-content-between after-component"
+                >
                     <button
                         onClick={toReturn}
-                        className="container-button text-font"
+                        className="col-auto col-md-2 container-button text-font"
                     >
-                        {/* <img
-                            src={img_return}
-                            alt="next"
-                            width="22px"
-                            height="22px"
-                        /> */}
                         Regresar
                     </button>   
                     <input
@@ -84,21 +68,15 @@ export const HistoryRename = () => {
                         name="referencia"
                         placeholder="CI / RUC / Pasaporte"
                         required
-                        className="container-data-payment-input-design
-                            container-customer-input-text
-                            container-customer-input-text-reference-size"
+                        className="col-auto
+                            container-data-payment-input-design
+                            container-customer-input-text"
                     />
                     <button
                         type="submit"
-                        className="container-button text-font"
+                        className="col-auto col-md-2 container-button text-font"
                     >
                         Consultar
-                        {/* <img
-                            src={img_search}
-                            alt="next"
-                            width="20px"
-                            height="20px"
-                        /> */}
                     </button>
                 </div>
             </form>

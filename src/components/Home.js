@@ -74,26 +74,32 @@ export const Home = ({ setIsCaptcha, setIdentifier, identifier, setClient, setTo
     }
 
     return (
-        <div className="container-home-temp">
-            <img
-                src={ img_home }
-                alt="Imagen de inicio"
-                width="40%" 
-                height="40%" 
-            />
-            <div className="container-home">
-                <input
-                    type="text"
-                    name="identifier"
-                    id="identifier"
-                    required
-                    placeholder="CI / RUC"
-                    onChange={onChangeInput}
-                    className="container-data-payment-input-design
-                        container-customer-input-text"
+        <div className="row justify-content-around" >
+            <div className='col-12 col-md-5'>
+                <img
+                    src={ img_home }
+                    alt="Imagen de inicio"
+                    width="100%" 
+                    height="auto" 
                 />
-                <div>
-                    <div>
+            </div>
+            <div className='col-12 col-md-5 align-self-center'>
+                <div className='row justify-content-center after-component'>
+                    <div className='col-auto col-md-auto'>
+                        <input
+                            type="text"
+                            name="identifier"
+                            id="identifier"
+                            required
+                            placeholder="CI / RUC"
+                            onChange={onChangeInput}
+                            className="container-data-payment-input-design
+                                container-customer-input-text"
+                        />
+                    </div>
+                </div>
+                <div className='row justify-content-center after-component'>
+                    <div className='col-auto col-md-auto'>
                         <ReCAPTCHA
                             ref={ref}
                             sitekey={process.env.REACT_APP_KEY_CAPTCHA}
@@ -106,19 +112,18 @@ export const Home = ({ setIsCaptcha, setIdentifier, identifier, setClient, setTo
                         )}
                     </div>
                 </div>
-                <button
-                    disabled={ isDisabled }
-                    onClick={ onClick }
-                    className={`container-button-home text-font ${( isDisabled ) && 'disabled_button' }`}
-                > 
-                    Continuar
-                    {/* <img
-                        src={img_next}
-                        alt="next"
-                        width="22px"
-                        height="22px"
-                    /> */}
-                </button>
+                <div className='row justify-content-center after-component'>
+                    <div className='col-auto col-md-auto'>
+                        <button
+                            disabled={ isDisabled }
+                            onClick={ onClick }
+                            className={`container-button-home text-font ${( isDisabled ) && 'disabled_button' }`}
+                        > 
+                            Continuar
+                        </button>
+                    </div>
+                </div>
+                
             </div>
         </div>
     )

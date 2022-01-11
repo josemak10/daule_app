@@ -26,34 +26,24 @@ export const Invoice = () => {
         history.replace('/facturas-a-pagar');
     }
 
-    // const toNext = () => {
-        // history.replace('datos-pago');
-    // }
-
     return (
-        <div className="container-style">
-            <div className="container-query-data-input">
+        <div>
+            <div className="row justify-content-between after-component before-component">
                 <button
                     onClick={toReturn}
-                    className="container-button text-font"
+                    className="col-auto col-md-2 container-button text-font"
                 >
-                    {/* <img
-                        src={img_return}
-                        alt="next"
-                        width="22px"
-                        height="22px"
-                    /> */}
                     Regresar
                 </button>
                 <label
-                    className="container-total-data-text-total text-font"
+                    className="col-auto container-total-data-text-total text-font"
                 >
                     Total a pagar: {total.toFixed(2)}
                 </label>
                 <label
-                    className='text-font text-white'
+                    className='col-0 col-sm-2 text-font text-white'
                 >
-                    GADM DAULE
+                    D
                 </label>
             </div>
             <ContainerCustomer total={total} invoices={invoices} isDone={isDone} />

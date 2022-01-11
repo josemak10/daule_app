@@ -15,40 +15,49 @@ export const TableData = ({ invoice, actionButton, action = 1, index }) => {
     const { ids } = allState;   
 
     return (
-        <div className="container-list-data-global">
-            <Tag
-                color={ getColorByModule(invoice.idModulo) }
-                className="table-data-text"
-            >{invoice.modulo}</Tag>
+        <div
+            className="row w-100 justify-content-center"
+        >
+            <div className='col-12 col-lg-2 align-self-center'>
+                <Tag
+                    color={ getColorByModule(invoice.idModulo) }
+                    className="col-auto table-data-text"
+                >{invoice.modulo}</Tag>
+            </div>
             <div
-                className={`container-list-data ${( (index % 2) === 0 ) && 'invoice-selected'}`}
+                className={`col-8 container-list-data ${( (index % 2) === 0 ) && 'invoice-selected'}`}
             >
                 <div
-                    className="container-list-data-block1"
+                    className="row w-100 justify-content-around"
                 >
-                    <div className="container-table-data-firt-row">
                     <label
-                        className="table-data-text table-data-text-oblique"
+                        className="col-12 col-lg-5 table-data-text table-data-text-oblique"
                     > 
                         {invoice.apellido + ' ' + invoice.nombre + ' - ' + invoice.cedula} 
                     </label>
-                        <label
-                            className="table-data-text"
-                        > Referencia:  {invoice.referencia} </label>
-                    </div>
-
+                    <label
+                        className="col-12 col-lg-5 table-data-text"
+                    > 
+                        Referencia:  {invoice.referencia} 
+                    </label>
                     
                     <label
-                        className="table-data-text-detalle"
-                    >{invoice.concepto}</label>
+                        className="col-12 table-data-text-detalle"
+                    >
+                        {invoice.concepto}
+                    </label>
                 </div>
+            </div>
                             
-                <div
-                    className="container-list-data-block2"
-                >
+            <div
+                className="col-2 container-list-data-block2"
+            >
+                <div className='row justify-content-center'>
                     <label
-                        className="container-list-data-block2-total"
-                    >$ {invoice.totalTarifa}</label>
+                        className="col-12 container-list-data-block2-total"
+                    >
+                        $ {invoice.totalTarifa}
+                    </label>
                     {
                         (!invoice.isCoactiva) && (
                             <img
@@ -58,8 +67,9 @@ export const TableData = ({ invoice, actionButton, action = 1, index }) => {
                                         ? img_check
                                         : img_uncheck)}
                                 alt="cart plus"
-                                width="30px"
-                                height="30px"
+                                width="20px"
+                                height="20px"
+                                className="col-auto col-md-auto"
                                 style={{
                                     cursor: 'pointer',
                                 }}

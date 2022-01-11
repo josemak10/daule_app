@@ -21,7 +21,6 @@ export const QueryData = ({ setClient, uid, total_temp }) => {
         history.replace('facturas-a-pagar');
     }
 
-    console.log(isLoading);
     useEffect(() => {
         let temp = 0;
         invoices.forEach(invoice => temp += invoice.totalTarifa );
@@ -79,10 +78,35 @@ export const QueryData = ({ setClient, uid, total_temp }) => {
 
     return (
         <form
-            className="container-query-data"
             onSubmit={onSubmit}
         >
-            <div className="container-query-data-input">
+            <div
+                className='row justify-content-between after-component'
+            >
+                <label
+                    className="col-5 col-md-3
+                        container-total-data-text-total text-font"
+                >
+                    Deuda total: $ {total} 
+                </label>
+                <label
+                    className="col-5 col-md-3
+                        container-total-data-text-total-yellow text-font"
+                >
+                    Monto a pagar: $ {totalPayment} 
+                </label>
+                <button
+                    onClick={onContinue}
+                    disabled={ids.length===0}
+                    className="col-12 col-md-2
+                        container-button text-font"
+                >
+                    Continuar
+                </button>
+            </div>
+            <div 
+                className='row justify-content-between after-component'
+            >
                 <input
                     type="text"
                     name="identifier"
@@ -90,48 +114,22 @@ export const QueryData = ({ setClient, uid, total_temp }) => {
                     defaultValue={uid}
                     // onChange={onChange}
                     placeholder="CI / RUC"
-                    className="container-data-payment-input-design
+                    className="col-5 col-md-2 
+                        container-data-payment-input-design
                         container-customer-input-text"
                 />
-                <Spin spinning={isLoading}>
-                    <button
-                        type="submit"
-                        className="container-button text-font"
-                    >
-                        Consultar
-                        {/* <img
-                            src={img_search}
-                            alt="next"
-                            width="20px"
-                            height="20px"
-                        /> */}
-                    </button>
-                </Spin>
-            </div>
-            <div className="container-query-data-input">
-                <label 
-                    className="container-total-data-text-total text-font"
-                >
-                    Deuda total: $ {total} 
-                </label>
-                <label 
-                    className="container-total-data-text-total-yellow text-font"
-                >
-                    Monto a pagar: $ {totalPayment} 
-                </label>
+                {/* <Spin
+                    spinning={isLoading}
+                    className="col-12 col-md-2"
+                > */}
                 <button
-                    onClick={onContinue}
-                    disabled={ids.length===0} 
-                    className="container-button text-font"
+                    type="submit"
+                    className="col-auto col-md-2 
+                        container-button text-font"
                 >
-                    Continuar
-                    {/* <img
-                        src={img_next}
-                        alt="next"
-                        width="22px"
-                        height="22px"
-                    /> */}
+                    Consultar
                 </button>
+                {/* </Spin> */}
             </div>
         </form>
     )

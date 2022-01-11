@@ -6,43 +6,47 @@ export const TableHistory = ({ row }) => {
 
     return (
         <div
-            className="container-list-data"
+            className="row w-100"
         >
             <div
-                className="container-list-data-block1"
+                className="col-10"
             >
-                <div className="container-table-data-firt-row">
+                <div
+                    className="row justify-content-around w-100"    
+                >
                     <Tag
                         color="magenta"
-                        className="table-data-text"
+                        className="col-auto col-lg-auto table-data-text"
                     >
                         {row.state}
                     </Tag>
                     <label
-                        className="table-data-text-reference"
+                        className="col-auto col-lg-auto table-data-text-reference"
                     > 
                         Referencia:  {row.reference}
                     </label>
                 </div>
 
                 <label
-                    className="table-data-text table-data-text-oblique"
+                    className="col-12 table-data-text table-data-text-oblique"
                 > 
                     {row.identifier + ' - ' + row.name} 
                 </label>
                 <label
-                    className="table-data-text-detalle"
+                    className="col-12 table-data-text-detalle"
                 >
                     {row.date + ' - ' + row.description + ', ' + row.message}
                 </label>
             </div>
 
             <div
-                className="container-list-data-block2"
+                className="col-2 align-self-center container-query-data-total-text"
             >
                 <label
                     className="container-list-data-block2-total"
-                >$ {row.amount}</label>
+                >
+                    $ {row.amount}
+                </label>
             </div>
         </div>
     )

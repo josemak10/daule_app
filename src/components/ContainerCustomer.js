@@ -121,7 +121,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
 
     return (
         <form
-            // className="container-customer"
         >
             <div className="row justify-content-center before-component">
                 <label
@@ -138,7 +137,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                     className="col-10 col-md-4
                         container-data-payment-input-design
                         container-customer-input-text"
-                        // container-customer-input-text-size"
                 />
             </div>
             <div className="row justify-content-center before-component">
@@ -156,7 +154,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                     className="col-10 col-md-4
                         container-data-payment-input-design
                         container-customer-input-text"
-                        // container-customer-input-text-size"
                 />
             </div>
             <div className="row justify-content-center before-component">
@@ -183,7 +180,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                     className="col-10 col-md-4
                         container-customer-input-text
                         container-data-payment-input-design"
-                        // container-customer-input-text-size
                 />
             </div>
             <div className="row justify-content-center before-component">
@@ -205,7 +201,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                                 className="col-10 col-md-4
                                     container-customer-input-text
                                     container-data-payment-input-design"
-                                    // container-customer-input-text-size
                             />
                         </>
                     )
@@ -226,7 +221,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                     className="col-10 col-md-4
                         container-customer-input-text-email
                         container-data-payment-input-design"
-                        // container-customer-input-text-size"
                 />
             </div>
             <div className="row justify-content-center before-component">
@@ -244,7 +238,6 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                     className="col-10 col-md-4
                         container-data-payment-input-design
                         container-customer-input-text"
-                        // container-customer-input-text-size"
                 />
             </div>
             <div className="row justify-content-center footer before-component">
@@ -265,21 +258,27 @@ export const ContainerCustomer = ({ total, invoices, isDone }) => {
                 {
                     (invoices.length > 0 && data.cedula!=='' && isDone) && (
                         <>
-                            {/* <Spin spinning={isLoading}> */}
-                            <button
-                                onClick={ onSubmit }
-                                disabled={invoices.length===0}
-                                className="col-auto container-button-payment"
-                            >
-                                Pagar
-                                <img
-                                    src={img_payment}
-                                    alt="payment"
-                                    width="22px"
-                                    height="22px"
-                                />
-                            </button>   
-                            {/* </Spin> */}
+                            <div className="col-auto" >
+                                <Spin
+                                    spinning={ isLoading }
+                                    tip="Cargando ..."
+                                    className="spin"
+                                >
+                                    <button
+                                        onClick={ onSubmit }
+                                        disabled={invoices.length===0}
+                                        className="container-button-payment"
+                                    >
+                                        Pagar
+                                        <img
+                                            src={img_payment}
+                                            alt="payment"
+                                            width="22px"
+                                            height="22px"
+                                        />
+                                    </button>    
+                                </Spin>
+                            </div>
 
                         </>
                     )

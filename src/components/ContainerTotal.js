@@ -14,7 +14,7 @@ export const ContainerTotal = ({ total, setIsDone, isDone }) => {
             // className="container-total-block"
         >
             <div
-                className="row justify-content-between align-items-center"
+                className="row justify-content-between align-items-center after-component"
                 // className="container-total-block2"
             >   
                 <a

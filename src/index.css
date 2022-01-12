@@ -526,3 +526,27 @@
   display: flex;
   justify-content: center;
 }
+
+.disabled_button {
+  background-color: #e7eff6;
+}
+
+.spin {
+  padding-top: 60px;
+  text-align: center;
+  width: 100%;
+}
+
+.spin2 {
+  text-align: center;
+  width: 100%;
+}
+
+.tmp1 {
+  background: aqua;
+}
+.tmp {
+  background: blue;
+  width: 100%;
+  height: auto;
+}

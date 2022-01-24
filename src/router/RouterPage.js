@@ -20,7 +20,7 @@ export const RouterPage = () => {
             <div 
                 className="container container-principal"
             >
-                <div className='row justify-content-between'>
+                <div className='row h-100 justify-content-between'>
                     <div className='col-12 align-items-start header'>
                         <img
                             src={ img_header }
